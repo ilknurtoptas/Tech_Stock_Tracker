@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Regression</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Stock Price Regression</h1>
+    
+    <!-- Dropdowns -->
+    <label for="stockSelect">Select Stock:</label>
+    <select id="stockSelect"></select>
+
+    <label for="yearSelect">Select Year:</label>
+    <select id="yearSelect"></select>
+
+    <!-- Graph Container -->
+    <div id="plot"></div>
+
+    <script>
+        let stockData = {};
+        let availableStocks = [];
+        let availableYears = [];
+
+        // Load stock list (stocks & years)
+        fetch("stock_list.json")
+            .then(response => response.json())
+            .then(data => {
+                availableStocks = data.stocks;
+                availableYears = data.years;
+
+                // Populate Stock Dropdown
+                let stockSelect = document.getElementById("stockSelect");
+                availableStocks.forEach(stock => {
+                    let option = document.createElement("option");
+                    option.value = stock;
+                    option.text = stock;
+                    stockSelect.appendChild(option);
+                });
+
+                // Populate Year Dropdown
+                let yearSelect = document.getElementById("yearSelect");
+                availableYears.forEach(year => {
+                    let option = document.createElement("option");
+                    option.value = year;
+                    option.text = year;
+                    yearSelect.appendChild(option);
+                });
+
+                // Load stock data
+                fetch("stock_data.json")
+                    .then(response => response.json())
+                    .then(data => {
+                        stockData = data;
+                        updateGraph();  // Initial plot
+                    });
+            });
+
+        // Update Graph when stock or year is selected
+        document.getElementById("stockSelect").addEventListener("change", updateGraph);
+        document.getElementById("yearSelect").addEventListener("change", updateGraph);
+
+        function updateGraph() {
+            let stock = document.getElementById("stockSelect").value;
+            let year = document.getElementById("yearSelect").value;
+            if (!stock || !year) return;
+
+            let dataPoints = stockData[stock][year];
+            if (!dataPoints) return;
+
+            let dates = dataPoints.map(d => d.Date);
+            let prices = dataPoints.map(d => d.Close);
+
+            // Linear Regression Calculation
+            let xValues = Array.from({length: prices.length}, (_, i) => i);
+            let yValues = prices;
+
+            let sumX = xValues.reduce((a, b) => a + b, 0);
+            let sumY = yValues.reduce((a, b) => a + b, 0);
+            let sumXY = xValues.map((x, i) => x * yValues[i]).reduce((a, b) => a + b, 0);
+            let sumXX = xValues.map(x => x * x).reduce((a, b) => a + b, 0);
+
+            let slope = (xValues.length * sumXY - sumX * sumY) / (xValues.length * sumXX - sumX * sumX);
+            let intercept = (sumY - slope * sumX) / xValues.length;
+
+            let regressionLine = xValues.map(x => slope * x + intercept);
+
+            // Plot Graph
+            let trace1 = {
+                x: dates,
+                y: prices,
+                mode: 'markers',
+                name: 'Stock Prices'
+            };
+
+            let trace2 = {
+                x: dates,
+                y: regressionLine,
+                mode: 'lines',
+                name: 'Regression Line'
+            };
+
+            let layout = {
+                title: `${stock} Stock Price Regression (${year})`,
+                xaxis: { title: "Date" },
+                yaxis: { title: "Stock Price (USD)" }
+            };
+
+            Plotly.newPlot("plot", [trace1, trace2], layout);
+        }
+    </script>
+</body>
+</html>
