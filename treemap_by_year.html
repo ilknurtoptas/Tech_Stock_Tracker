@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stock Treemap by Year</title>
+  <!-- Load Plotly (specific version) -->
+  <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+  <!-- Load your stock_data.js, which defines 'stockData' and 'stockList' -->
+  <script src="stock_data.js"></script>
+</head>
+<body>
+  <h1>Stock Treemap by Year</h1>
+
+  <!-- Dropdown to select a year -->
+  <label for="yearSelect">Select Year:</label>
+  <select id="yearSelect"></select>
+
+  <!-- Container for the treemap -->
+  <div id="treemap" style="width: 100%; height: 80vh;"></div>
+
+  <!-- Load our custom JavaScript -->
+  <script src="treemap_by_year.js"></script>
+</body>
+</html>
