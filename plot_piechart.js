@@ -1,4 +1,3 @@
-const stockData = {};
 
 
 // Create the pie chart
@@ -31,7 +30,7 @@ function createPieChart() {
         title: 'Stock Performance (2015-2025)',
     };
 
-    Plotly.newPlot('chart', data, layout);
+    Plotly.newPlot('plot', data, layout);
 }
 
 
