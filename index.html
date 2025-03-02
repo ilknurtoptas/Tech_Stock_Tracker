@@ -130,6 +130,33 @@
       document.getElementById("calculatorContainer").classList.toggle("hidden", mode !== "calculator");
     });
 
+    // Update chart type listener to also clear treemap and summary containers when not selected
+    document.getElementById("chartSelect").addEventListener("change", function () {
+      let selectedChart = this.value;
+      let filtersDiv = document.getElementById("filters");
+      let stockSelect = document.getElementById("stockSelect");
+      let yearSelect = document.getElementById("yearSelect");
+
+      if (selectedChart === "pie") {
+        filtersDiv.style.display = "none"; // Hide both stock & year filters
+      } else if (selectedChart === "treemap") {
+        filtersDiv.style.display = "block"; // Show filters
+        stockSelect.style.display = "none"; // Hide stock filter for treemap
+        yearSelect.style.display = "inline-block"; // Show year filter
+      } else {
+        filtersDiv.style.display = "block"; // Show both filters
+        stockSelect.style.display = "inline-block"; // Show stock filter
+        yearSelect.style.display = "inline-block"; // Show year filter
+      }
+      document.getElementById("plot").innerHTML = ""; // Reset plot area
+
+      // If not treemap, clear treemap and summary containers
+      if (selectedChart !== "treemap") {
+        document.getElementById("treemap").innerHTML = "";
+        document.getElementById("summary").innerHTML = "";
+      }
+    });
+
     // Updated calculate button code to search records across all years for the selected stock
     document.getElementById("calculateButton").addEventListener("click", function () {
       let investmentAmount = parseFloat(document.getElementById("amount").value);
