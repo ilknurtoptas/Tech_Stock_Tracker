@@ -1,4 +1,4 @@
-# Stock Vision Pro
+# Tech Stock Tracker
 ## Stock Visualization & Calculator
  
 ### Overview
