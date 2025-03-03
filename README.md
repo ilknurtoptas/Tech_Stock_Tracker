@@ -35,7 +35,7 @@ User Responsibility: Investments are subject to risk, and past performance is no
 
 #### Data Sources
 
-Stock data has been sourced from publicly available financial market databases.
+Stock data has been sourced from Yahoo Finance.
 
 #### External Code References
 
