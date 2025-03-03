@@ -59,3 +59,5 @@ stock_list.json - Lists available stocks and years for analysis.
 
 The aim of this project was to create an interactive stock analysis tool that helps small investors make informed decisions by providing insights into market trends, stock performance, and potential investment returns. Utilizing advanced visualization techniques such as candlestick charts, regression graphs, and treemaps, the tool enables a comprehensive analysis of historical stock data. The Stock Value Calculator adds a practical "what-if" feature, allowing investors to explore different investment scenarios. By leveraging modern technologies like Flask, PostgreSQL, and JavaScript, the project not only facilitates deep insights into market behavior but also empowers small investors with the resources needed to analyze returns, strategize effectively, and achieve financial growth. Despite certain limitations, such as the availability of historical market capitalization data, the project sets a strong foundation for future enhancements to support better investment strategies.
 
+### Website Link 
+https://ilknurtoptas.github.io/Tech_Stock_Tracker/
