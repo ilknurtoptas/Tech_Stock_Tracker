@@ -7,7 +7,7 @@ This project is a stock visualization and projection calculator designed to help
 
 For small to medium traders, this tool offers valuable insights into market trends, helping them make informed decisions. By utilizing historical stock data, traders can identify patterns, assess volatility, and determine the potential profitability of an investment. The regression graph and candlestick charts allow traders to analyze price movements over time, while the calculator function provides a simplified way to estimate returns based on past performance. This empowers traders with data-driven decision-making, reducing reliance on speculation and enhancing their trading strategies.
 
-How to Use
+### How to Use
 
 Open index.html in a web browser.
 
@@ -21,7 +21,7 @@ View results in the graphical output area.
 
 Ensure that the stock_data.js, plot_graph.js, and stock_calculator.js files are loaded correctly for full functionality.
 
-Ethical Considerations
+### Ethical Considerations
 
 This project aims to provide transparent and accessible financial data for educational and analytical purposes. However, users should be aware of the following ethical considerations:
 
@@ -31,19 +31,19 @@ Data Accuracy: The stock data is historical and may not reflect real-time market
 
 User Responsibility: Investments are subject to risk, and past performance is not indicative of future results. Users should take personal responsibility for financial decisions.
 
-References
+### References
 
-Data Sources
+#### Data Sources
 
 Stock data has been sourced from publicly available financial market databases.
 
-External Code References
+#### External Code References
 
 plotly.js library is used for data visualization (https://plotly.com/javascript/).
 
 Additional JavaScript utilities adapted from open-source resources for graph plotting and stock calculations.
 
-Project Files
+#### Project Files
 
 index.html - Main interface for the visualization and calculator.
 
